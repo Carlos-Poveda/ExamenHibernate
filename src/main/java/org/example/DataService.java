@@ -14,7 +14,7 @@ public class DataService {
         this.sessionFactory = sessionFactory;
     }
 
-    // Save Pelicula
+    // Save película
     public Pelicula savePelicula(Pelicula pelicula) {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
@@ -31,7 +31,7 @@ public class DataService {
         }
     }
 
-    // Find Opiniones By Usuario
+    // Find opiniones by usuario
     public List<Opinion> findOpinionesByUsuario(String usuario) {
         try (Session session = sessionFactory.openSession()) {
             // HQL simple para buscar por el campo 'usuario'
@@ -71,11 +71,11 @@ public class DataService {
     }
 
     // Find películas by puntuación
-    public List<Pelicula> findPeliculasByMinPuntuacion(Integer minPuntuacion) {
+    public List<Pelicula> findPeliculasByPuntuacion(Integer minPuntuacion) {
         try (Session session = sessionFactory.openSession()) {
             String hql = "SELECT DISTINCT p FROM Pelicula p " +
                     "JOIN FETCH p.opiniones o " +
-                    "WHERE o.puntuacion >= :puntuacion";
+                    "WHERE o.puntuacion <= :puntuacion";
             Query<Pelicula> query = session.createQuery(hql, Pelicula.class);
             query.setParameter("puntuacion", minPuntuacion);
             return query.list();
@@ -84,5 +84,4 @@ public class DataService {
             return List.of();
         }
     }
-
 }

@@ -2,7 +2,6 @@ package org.example;
 
 import org.hibernate.SessionFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -11,7 +10,7 @@ public class Main {
         SessionFactory factory = DataProvider.getSessionFactory();
         DataService dataService = new DataService(factory);
 
-        // SavePelicula
+        // Guardar Pelicula
         System.out.println("---SAVE---");
 
         Pelicula pelicula = new Pelicula("Ejemplo Pelicula",2025,"Drama","Yo");
@@ -21,8 +20,7 @@ public class Main {
         // FindOpinionByCorreo
         System.out.println("---BUSCAR OPINIONES POR CORREO---");
 
-        List<Opinion> opinionesDeUsuarioX = new ArrayList<>();
-        opinionesDeUsuarioX = dataService.findOpinionesByUsuario("user1@example.com");
+        List<Opinion> opinionesDeUsuarioX = dataService.findOpinionesByUsuario("user1@example.com");
         for (Opinion opinion : opinionesDeUsuarioX) {
             System.out.println(opinion);
         }
@@ -40,7 +38,7 @@ public class Main {
         // Find Peliculas By Puntuación
         System.out.println("---BUSCAR PELÍCULAS POR PUNTUACIÓN---");
 
-        List<Pelicula> peliculasMenosDe3 = dataService.findPeliculasByMinPuntuacion(3);
+        List<Pelicula> peliculasMenosDe3 = dataService.findPeliculasByPuntuacion(3);
 
         for (Pelicula peli : peliculasMenosDe3) {
             System.out.println(peli);
