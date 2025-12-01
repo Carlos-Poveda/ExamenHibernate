@@ -34,7 +34,6 @@ public class DataService {
     // Find opiniones by usuario
     public List<Opinion> findOpinionesByUsuario(String usuario) {
         try (Session session = sessionFactory.openSession()) {
-            // HQL simple para buscar por el campo 'usuario'
             Query<Opinion> query = session.createQuery(
                     "FROM Opinion o WHERE o.usuario = :usuario", Opinion.class);
             query.setParameter("usuario", usuario);
