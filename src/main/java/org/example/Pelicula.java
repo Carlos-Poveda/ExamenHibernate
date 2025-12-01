@@ -16,8 +16,6 @@ public class Pelicula {
     private String genero;
     private String director;
 
-    // CascadeType.ALL permite que si guardas una Pelicula, se guarden sus opiniones automáticamente.
-    // orphanRemoval = true borra la opinión de la BD si la quitas de esta lista.
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Opinion> opiniones = new ArrayList<>();
 
